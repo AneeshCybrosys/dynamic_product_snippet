@@ -104,14 +104,9 @@
                                      role="tabpanel"
                                      aria-labelledby="viewed-tab">
                                     <div class="product_carousel_slider oe_website_sale">
-                                        <input type="hidden"
-                                               name="viewed_count"
-                                               t-if="most_viewed"
-                                               t-att-value="len(most_viewed)"/>
                                             <div class="carousel-inner">
                                                 <t t-foreach="most_viewed"
                                                    t-as="products">
-                                                    <div t-attf-class="carousel-item #{'' if products_index else 'active'}">
                                                         <div class="container">
                                                             <div class="row">
                                                                 <t t-foreach="products"
@@ -147,7 +142,6 @@
                                                                 </t>
                                                             </div>
                                                         </div>
-                                                    </div>
                                                 </t>
                                             </div>
                                     </div>
