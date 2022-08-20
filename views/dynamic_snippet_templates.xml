@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="basic_snippet" name="Product Snippet">
+        <section class="container dynamic_snippet">
+            <div class="wrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="tile" id="content">
+                            <!--tabs-->
+                            <ul class="nav nav-tabs" role="tablist">
+                                <div class="slider"/>
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="sold-tab"
+                                       data-toggle="tab" href="#sold" role="tab"
+                                       aria-controls="sold" aria-selected="true"
+                                       data-filter="hdpe">Most Sold
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="viewed-tab"
+                                       data-toggle="tab" href="#viewed"
+                                       role="tab"
+                                       aria-controls="viewed"
+                                       aria-selected="false"
+                                       data-filter="sprinkle">Most Viewed
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content gap">
+                                <div class="tab-pane fade show active" id="sold"
+                                     role="tabpanel" aria-labelledby="sold-tab">
+                                    <div class="product_carousel_slider oe_website_sale">
+                                        <input type="hidden"
+                                               name="product_count"
+                                               t-if="objects"
+                                               t-att-value="len(objects)"/>
+                                        <div t-att-id="uniqueId"
+                                             class="carousel slide d-flex"
+                                             data-ride="carousel">
+                                            <a class="o_product_carousel_control carousel-control-prev position-relative"
+                                               t-att-href="'#' + uniqueId"
+                                               role="button" data-slide="prev"
+                                               t-if="num_slides">
+                                                1 >
+                                                <i class="fa fa-2x fa-chevron-left text-black-50"/>
+                                                <span class="sr-only">Previous
+                                                </span>
+                                            </a>
+                                            <div class="carousel-inner">
+                                                <t t-foreach="objects"
+                                                   t-as="products">
+                                                    <div t-attf-class="carousel-item #{'' if products_index else 'active'}">
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <t t-foreach="products"
+                                                                   t-as="data">
+                                                                    <div class="col-lg-3 col-md-4 col-sm-6 col-12 filter hdpe">
+                                                                        <a t-attf-href="/shop/product/#{data['id']}">
+                                                                            <div class="col-lg-6 align-items-center">
+                                                                                <div class="container">
+                                                                                    <img class="img img-fluid mx-auto rounded"
+                                                                                         t-att-src="data['image']"
+                                                                                         style="padding: 0px; margin: 0px; height: 232px; width: 1200px;"/>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="img_details">
+                                                                                <h5 class="product_name">
+                                                                                    <a class="add_to_cart"
+                                                                                       t-attf-href="/shop/product/#{data['id']}">
+                                                                                        <span t-if="data"
+                                                                                              t-esc="data['display_name']"/>
+                                                                                    </a>
+                                                                                </h5>
+                                                                                <div class="price">
+                                                                                    <div class="price">
+                                                                                        <span t-if="data"
+                                                                                              t-esc="res_company.currency_id.symbol"/>
+                                                                                        <span t-if="data"
+                                                                                              t-esc="data['list_price']"/>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </a>
+                                                                    </div>
+                                                                </t>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </t>
+                                            </div>
+                                            <a class="o_product_carousel_control carousel-control-next position-relative"
+                                               t-att-href="'#' + uniqueId"
+                                               role="button" data-slide="next"
+                                               t-if="num_slides">
+                                                1 >
+                                                <i class="fa fa-2x fa-chevron-right text-black-50"/>
+                                                <span class="sr-only">Next
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade show" id="viewed"
+                                     role="tabpanel"
+                                     aria-labelledby="viewed-tab">
+                                    <div class="product_carousel_slider oe_website_sale">
+                                        <input type="hidden"
+                                               name="viewed_count"
+                                               t-if="most_viewed"
+                                               t-att-value="len(most_viewed)"/>
+                                            <div class="carousel-inner">
+                                                <t t-foreach="most_viewed"
+                                                   t-as="products">
+                                                    <div t-attf-class="carousel-item #{'' if products_index else 'active'}">
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <t t-foreach="products"
+                                                                   t-as="data">
+                                                                    <div class="col-lg-3 col-md-4 col-sm-6 col-12 filter hdpe">
+                                                                        <a t-attf-href="/shop/product/#{data['id']}">
+                                                                            <div class="col-lg-6 align-items-center">
+                                                                                <div class="container">
+                                                                                    <img class="img img-fluid mx-auto rounded"
+                                                                                         t-att-src="data['image']"
+                                                                                         style="padding: 0px; margin: 0px; height: 232px; width: 1200px;"/>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="img_details">
+                                                                                <h5 class="product_name">
+                                                                                    <a class="add_to_cart"
+                                                                                       t-attf-href="/shop/product/#{data['id']}">
+                                                                                        <span t-if="data"
+                                                                                              t-esc="data['display_name']"/>
+                                                                                    </a>
+                                                                                </h5>
+                                                                                <div class="price">
+                                                                                    <div class="price">
+                                                                                        <span t-if="data"
+                                                                                              t-esc="res_company.currency_id.symbol"/>
+                                                                                        <span t-if="data"
+                                                                                              t-esc="data['list_price']"/>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </a>
+                                                                    </div>
+                                                                </t>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </t>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="external_snippets" inherit_id="website.snippets" priority="8">
+        <xpath expr="//div[@id='snippet_effect']//t[@t-snippet][last()]"
+               position="after">
+            <t t-snippet="dynamic_product_snippet.basic_snippet"/>
+        </xpath>
+    </template>
+</odoo>
