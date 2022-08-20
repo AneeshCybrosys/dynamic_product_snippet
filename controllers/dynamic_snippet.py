@@ -46,20 +46,9 @@ class MostSoldProduct(http.Controller):
         if any(sold_list):
             sold_group.append(sold_list)
 
-        # grouping the sold products
-        viewed_group = []
-        viewed_list = []
-        for index, record in enumerate(most_viewed_products, 1):
-            viewed_list.append(record)
-            if index % products_per_slide == 0:
-                viewed_group.append(viewed_list)
-                viewed_list = []
-        if any(viewed_list):
-            viewed_group.append(viewed_list)
-
         values = {
             "objects": sold_group,
-            "most_viewed": viewed_group,
+            "most_viewed": [most_viewed_products],
             "products_per_slide": products_per_slide,
             "num_slides": len(sold_group),
             "uniqueId": "pc-%d" % int(time.time() * 1000),
