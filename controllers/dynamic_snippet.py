@@ -49,7 +49,6 @@ class MostSoldProduct(http.Controller):
         values = {
             "objects": sold_group,
             "most_viewed": [most_viewed_products],
-            "products_per_slide": products_per_slide,
             "num_slides": len(sold_group),
             "uniqueId": "pc-%d" % int(time.time() * 1000),
         }
