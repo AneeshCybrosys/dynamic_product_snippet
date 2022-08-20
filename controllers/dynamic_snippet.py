@@ -22,6 +22,17 @@ class MostSoldProduct(http.Controller):
                                                               'image_512')
             display_products.append(items)
 
+        # grouping the sold products
+        sold_group = []
+        sold_list = []
+        for index, record in enumerate(display_products, 1):
+            sold_list.append(record)
+            if index % products_per_slide == 0:
+                sold_group.append(sold_list)
+                sold_list = []
+        if any(sold_list):
+            sold_group.append(sold_list)
+
         # most viewed
         viewed = request.env['website.track'].sudo().search(
             [('product_id', '!=', False)])
@@ -34,17 +45,6 @@ class MostSoldProduct(http.Controller):
             items['image'] = request.env['website'].image_url(products,
                                                               'image_512')
             most_viewed_products.append(items)
-
-        # grouping the sold products
-        sold_group = []
-        sold_list = []
-        for index, record in enumerate(display_products, 1):
-            sold_list.append(record)
-            if index % products_per_slide == 0:
-                sold_group.append(sold_list)
-                sold_list = []
-        if any(sold_list):
-            sold_group.append(sold_list)
 
         values = {
             "objects": sold_group,
