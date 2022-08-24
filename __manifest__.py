@@ -11,8 +11,8 @@
 
     'author': "Minions 6",
 
-    'version': '15.0.1.0',
-    'depends': ['website'],
+    'version': '15.0.1.0.0',
+    'depends': ['website','website_sale'],
 
     'data': [
         'views/dynamic_snippet_templates.xml',
