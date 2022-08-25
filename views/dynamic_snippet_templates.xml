@@ -6,7 +6,6 @@
                 <div class="container">
                     <div class="row">
                         <div class="tile" id="content">
-                            <!--tabs-->
                             <ul class="nav nav-tabs" role="tablist">
                                 <div class="slider"/>
                                 <li class="nav-item">
