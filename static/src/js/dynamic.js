@@ -18,4 +18,3 @@ odoo.define('dynamic_product_snippet.dynamic', function (require) {
    console.log('end')
    return Dynamic;
 });
-//});
